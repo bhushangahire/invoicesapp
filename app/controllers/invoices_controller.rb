@@ -11,29 +11,34 @@ class InvoicesController < ApplicationController
   # GET /invoices/1
   # GET /invoices/1.json
   def show
-	
-	@client = Client.find(Invoice.find(params[:id]).client_id)
+	@client = Client.find_by_id(Invoice.find(params[:id]).client_id)
+	@invoice_items = Invoice.find(params[:id]).invoice_items
   
   end
 
   # GET /invoices/new
   def new
     @invoice = Invoice.new
-    @client = Client.new
+    @invoice.invoice_items.build
+	 @clients = Client.all
   end
 
   # GET /invoices/1/edit
   def edit
+  	@client = Client.new
+  	@invoice_items = Invoice.find_by_id(params[:id]).invoice_items
   end
 
   # POST /invoices
   # POST /invoices.json
   def create
-    @invoice = Invoice.new(invoice_params)
-    @client = Client.new(params[:name])
+    @invoice = Invoice.create(params[:invoice])
+#    params[:invoice][:invoice_items_attributes].each do |k,v|
+#    	InvoiceItem.create(v)
+#    end
 
     respond_to do |format|
-      if @invoice.save && @client.save
+      if @invoice.save
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
         format.json { render action: 'show', status: :created, location: @invoice }
       else
@@ -46,6 +51,8 @@ class InvoicesController < ApplicationController
   # PATCH/PUT /invoices/1
   # PATCH/PUT /invoices/1.json
   def update
+   
+   
     respond_to do |format|
       if @invoice.update(invoice_params)
         format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
@@ -73,8 +80,10 @@ class InvoicesController < ApplicationController
       @invoice = Invoice.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def invoice_params
-      params.require(:invoice).permit(:project_title, :client_id, :notes)
-    end
+#    # Never trust parameters from the scary internet, only allow the white list through.
+#    def invoice_params
+#      params.require(:invoice).permit(:project_title, :client_id, :notes)
+#    end
+    
+
 end

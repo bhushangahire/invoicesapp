@@ -18,6 +18,12 @@
 <p>
   <strong>Client Name:</strong>
   <%= @client.name %>
+ </p>
+ <p>
+ 	<strong>Invoice Items:</strong>
+ 	<% for invoice_item in @invoice.invoice_items %>
+ 		<li><%=h invoice_item.item_title %></li>
+ 	<% end %>
 </p>
 
 <%= link_to 'Edit', edit_invoice_path(@invoice) %> |

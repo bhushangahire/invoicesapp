@@ -17,11 +17,19 @@
   </div>
   <div class="field">
     <%= f.label :client_id %><br>
-    <%= f.text_field :client_id %>
+    <%= f.collection_select(:client_id, @clients, :id, :name)  %>
   </div>
   <div class="field">
     <%= f.label :notes %><br>
     <%= f.text_area :notes %>
+  </div>
+  <div class="field">
+  	<%= f.fields_for :invoice_items do |ft| %>
+  		<p>
+  			<%= ft.label :item_title %><br />
+  			<%= ft.text_field :item_title %><br />
+  		</p>
+  	<% end %>
   </div>
   <div class="actions">
     <%= f.submit %>
