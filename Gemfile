@@ -46,3 +46,7 @@ end
 
 # use attr accessible
 gem 'protected_attributes'
+gem 'bootstrap-sass'
+group :development do
+	gem 'rails_layout'
+end

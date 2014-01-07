@@ -1,24 +1,22 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
   <strong>Project title:</strong>
   <%= @invoice.project_title %>
 </p>
 
 <p>
-  <strong>Client:</strong>
-  <%= @invoice.client_id %>
-</p>
+  <strong>Client Name:</strong>
+  <%= @client.name %>
+ </p>
 
 <p>
   <strong>Notes:</strong>
   <%= @invoice.notes %>
 </p>
 
-<p>
-  <strong>Client Name:</strong>
-  <%= @client.name %>
- </p>
+
  <p>
  	<strong>Invoice Items:</strong>
  	<% for invoice_item in @invoice.invoice_items %>

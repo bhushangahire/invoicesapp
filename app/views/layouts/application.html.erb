@@ -2,14 +2,17 @@
 <html>
 <head>
   <title>InvoicesApp</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<%= render 'layouts/header' %>
 
-<%= yield %>
-
-<%= debug(params) if Rails.env.development? %>
+	<div class="container">
+		<%= yield %>
+		
+		<%= debug(params) if Rails.env.development? %>
+	</div>
 </body>
 </html>
