@@ -4,38 +4,42 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
-	 @clients = Client.all
+  	@clients = Client.all
+  	 if params[:client_id].nil?
+  	 	 @invoices = Invoice.all
+	 else
+	 	 @invoices = Client.find_by_id(params[:client_id]).invoices
+	 end
+	 
   end
 
   # GET /invoices/1
   # GET /invoices/1.json
   def show
-	@client = Client.find_by_id(Invoice.find(params[:id]).client_id)
-	@invoice_items = Invoice.find(params[:id]).invoice_items
-  
+  	@invoice = Invoice.find_by_slug(params[:id])
+	@client = Client.find_by_id(Invoice.find_by_slug(params[:id]).client_id)
+	@invoice_items = Invoice.find_by_slug(params[:id]).invoice_items
+  	
   end
 
   # GET /invoices/new
   def new
     @invoice = Invoice.new
-    @invoice.invoice_items.build
+    2.times { @invoice.invoice_items.build }
 	 @clients = Client.all
   end
 
   # GET /invoices/1/edit
   def edit
-  	@client = Client.new
-  	@invoice_items = Invoice.find_by_id(params[:id]).invoice_items
+  	@clients = Client.all
+  	@invoice_items = Invoice.find_by_slug(params[:id]).invoice_items
   end
 
   # POST /invoices
   # POST /invoices.json
   def create
-    @invoice = Invoice.create(params[:invoice])
-#    params[:invoice][:invoice_items_attributes].each do |k,v|
-#    	InvoiceItem.create(v)
-#    end
+  	@clients = Client.all
+   @invoice = Invoice.create(params[:invoice])
 
     respond_to do |format|
       if @invoice.save
@@ -51,10 +55,8 @@ class InvoicesController < ApplicationController
   # PATCH/PUT /invoices/1
   # PATCH/PUT /invoices/1.json
   def update
-   
-   
     respond_to do |format|
-      if @invoice.update(invoice_params)
+      if @invoice.update(params[:invoice])
         format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
         format.json { head :no_content }
       else
@@ -77,7 +79,7 @@ class InvoicesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_invoice
-      @invoice = Invoice.find(params[:id])
+      @invoice = Invoice.find_by_slug(params[:id])
     end
 
 #    # Never trust parameters from the scary internet, only allow the white list through.

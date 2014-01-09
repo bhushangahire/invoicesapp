@@ -1,0 +1,5 @@
+<table class="table">
+	<%= f.fields_for :invoice_items do |builder| %>
+		<%= render 'item_fields', f: builder %>
+	<% end %>
+</table>

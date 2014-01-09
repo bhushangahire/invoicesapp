@@ -1,8 +1,17 @@
 InvoicesApp::Application.routes.draw do
+  resources :users
   resources :invoices
-  resources :clients
+  resources :clients do
+  	resources :invoices, only: [:index]
+  end
+  
+  resources :sessions, only: [:new, :create, :destroy]
+  
   root to: 'static_pages#home'
   
+  get '/signup',  to: 'users#new'
+  get '/login',   to: 'sessions#new'
+  delete '/logout',  to: 'sessions#destroy'
 	
 
   # The priority is based upon order of creation: first created -> highest priority.
