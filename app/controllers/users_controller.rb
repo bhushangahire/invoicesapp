@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	def index
-		@users = User.all
+		@user ||= User.find_by_remember_token(cookies[:remember_token])
+		render 'show'
 	end
 	
 	def show

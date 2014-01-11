@@ -1,4 +1,10 @@
-<% @clients.each do |client| %>
-	<h1><%= client.name %></h1>
-	<%= link_to "Invoices", client_invoices_url(client) %>
+<ul><% @clients.each do |client| %>
+	<li>
+		<h3><%= client.name %></h3>
+		<span><%= link_to "Invoices", client_invoices_url(client) %></span>
+		<span><%= link_to "Delete", client, method: :delete, data: { confirm: "Are you sure?" } %></span>
+	</li>
 <% end %>
+</ul>
+
+<%= link_to "New Client", new_client_path %>

@@ -7,6 +7,7 @@ InvoicesApp::Application.routes.draw do
   
   resources :sessions, only: [:new, :create, :destroy]
   
+  get '/about', to: 'static_pages#about'
   root to: 'static_pages#home'
   
   get '/signup',  to: 'users#new'

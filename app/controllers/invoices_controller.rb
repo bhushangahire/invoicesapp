@@ -4,9 +4,10 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-  	@clients = Client.all
+  	 @clients = Client.all
   	 if params[:client_id].nil?
-  	 	 @invoices = Invoice.all
+  	 	user = User.find_by_remember_token(cookies[:remember_token])
+  	 	 @invoices = user.invoices
 	 else
 	 	 @invoices = Client.find_by_id(params[:client_id]).invoices
 	 end
@@ -25,8 +26,9 @@ class InvoicesController < ApplicationController
   # GET /invoices/new
   def new
     @invoice = Invoice.new
-    2.times { @invoice.invoice_items.build }
-	 @clients = Client.all
+    @invoice.invoice_items.build
+    user = User.find_by_remember_token(cookies[:remember_token])
+	@clients = user.clients
   end
 
   # GET /invoices/1/edit
@@ -38,7 +40,6 @@ class InvoicesController < ApplicationController
   # POST /invoices
   # POST /invoices.json
   def create
-  	@clients = Client.all
    @invoice = Invoice.create(params[:invoice])
 
     respond_to do |format|

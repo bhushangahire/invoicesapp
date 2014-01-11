@@ -12,23 +12,28 @@
   <% end %>
 
   <div class="field">
+  
     <%= f.label :project_title %><br>
     <%= f.text_field :project_title, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :client_id %><br>
     <% clients_array = @clients.map { |client| [client.name, client.id] } %>
-    <%= f.select :client_id, options_for_select(clients_array)  %>
+    <%= f.select :client_id, options_for_select(clients_array), { :include_blank=>false }, { :class => 'form-control' } %>
   </div>
   <div class="field">
-  	<%= render 'item_fields_wrap', f: f %>
+  	<%= f.fields_for :invoice_items do |builder| %>
+	  	<%= render 'invoice_item_fields', f: builder %>
+	<% end %>
+   <p><%= link_to_add_fields "Add Item Detail", f, :invoice_items %></p>
   </div>
   <div class="field">
     <%= f.label :notes %><br>
     <%= f.text_area :notes, class: "form-control" %>
     <%= f.hidden_field :slug %>
+    <%= f.hidden_field :user_id, value: admin_user.id %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

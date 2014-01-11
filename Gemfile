@@ -57,3 +57,6 @@ group :test do
 	gem 'factory_girl_rails', '4.1.0'
 	gem 'launchy'
 end
+
+# fix for javasciprt document ready stuff
+gem 'jquery-turbolinks'
