@@ -19,7 +19,7 @@ class InvoicesController < ApplicationController
   def show
   	@invoice = Invoice.find_by_slug(params[:id])
 	@client = Client.find_by_id(Invoice.find_by_slug(params[:id]).client_id)
-	@invoice_items = Invoice.find_by_slug(params[:id]).invoice_items
+	@user = User.find(@invoice.user_id)
   	
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140111012109) do
+ActiveRecord::Schema.define(version: 20140112005456) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 20140111012109) do
     t.string   "item_desc"
   end
 
+  create_table "invoice_statuses", force: true do |t|
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "invoices", force: true do |t|
     t.string   "project_title"
     t.integer  "client_id"
@@ -39,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140111012109) do
     t.string   "slug"
     t.integer  "user_id"
     t.integer  "invoice_type"
+    t.integer  "invoice_status_id"
   end
 
   add_index "invoices", ["slug"], name: "index_invoices_on_slug"
@@ -50,6 +57,11 @@ ActiveRecord::Schema.define(version: 20140111012109) do
     t.datetime "updated_at"
     t.string   "remember_token"
     t.string   "password_digest"
+    t.string   "user_title"
+    t.string   "user_tagline"
+    t.integer  "user_phone"
+    t.string   "user_weburl"
+    t.string   "user_company"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"

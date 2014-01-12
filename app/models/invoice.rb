@@ -5,6 +5,7 @@ class Invoice < ActiveRecord::Base
 																 allow_destroy: true
 	belongs_to :client
 	belongs_to :user
+	belongs_to :invoice_status
 	
 	validates :client_id, presence: true, :numericality => { :only_integer => true }
 	validates_presence_of :project_title
@@ -18,6 +19,9 @@ class Invoice < ActiveRecord::Base
 	def to_param
 		slug
 	end
-
+	
+	def total_price
+	    invoice_items.to_a.sum(:item_amount)
+	end
 	
 end

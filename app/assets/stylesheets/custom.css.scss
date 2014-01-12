@@ -4,3 +4,26 @@
 header, .debug_dump {
 	margin: 50px auto;
 }
+
+body {
+	font-family:  "Proxima Nova", Helvetica, sans-serif;
+}
+
+.container {
+	font-family: "Brandon Grotesque", sans-serif;
+}
+
+.invoice-details {
+	background: #eee;
+	padding: 25px;
+	font-family: "Proxima Nova";
+	table {
+		padding: 10px;
+		tr {
+			border-bottom: 1px solid #ddd;
+			td {
+				border-top: none;
+			}
+		}
+	}
+}
