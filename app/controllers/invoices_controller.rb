@@ -1,12 +1,13 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:index, :new, :edit]
 
   # GET /invoices
   # GET /invoices.json
   def index
   	 @clients = Client.all
   	 if params[:client_id].nil?
-  	 	 @invoices = User.find_by_remember_token(cookies[:remember_token]).invoices
+  	 	 @invoices = @user.invoices
 	 else
 	 	 @invoices = Client.find_by_id(params[:client_id]).invoices
 	 end
@@ -16,7 +17,6 @@ class InvoicesController < ApplicationController
   # GET /invoices/1
   # GET /invoices/1.json
   def show
-  	@invoice = Invoice.find_by_slug(params[:id])
 	@client = Client.find_by_id(@invoice.client_id)
 	@user = User.find(@invoice.user_id)
 	@currency = Currency.find_by_id(@invoice.currency_id)
@@ -27,15 +27,14 @@ class InvoicesController < ApplicationController
   def new
     @invoice = Invoice.new
     @invoice.invoice_items.build
-    user = User.find_by_remember_token(cookies[:remember_token])
-	@clients = user.clients
+	@clients = @user.clients
 	@currencies = Currency.all
   end
 
   # GET /invoices/1/edit
   def edit
   	@currencies = Currency.all
-  	@clients = Client.find_by_id(params[:user_id])
+  	@clients = @user.clients
   	@invoice_items = Invoice.find_by_slug(params[:id]).invoice_items
   end
 
@@ -85,6 +84,10 @@ class InvoicesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_invoice
       @invoice = Invoice.find_by_slug(params[:id])
+    end
+    
+    def set_user
+    	@user = User.find_by_remember_token(cookies[:remember_token])
     end
 
 #    # Never trust parameters from the scary internet, only allow the white list through.

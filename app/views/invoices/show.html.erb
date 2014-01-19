@@ -25,10 +25,7 @@
 		<thead>
 		  <tr>
 		    <th>Description</th>
-		    <th>Amount (in 
-		    	<% unless @currency.symbol.blank? %>
-		    		<%= @currency.symbol %> 
-		    	<%end%>)</th>
+		    <th>Amount (in <%= @currency.symbol %>)</th>
 		   </tr>
 		</thead>
 		<tbody>

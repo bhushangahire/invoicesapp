@@ -9,6 +9,7 @@ class Invoice < ActiveRecord::Base
 	
 	validates :client_id, presence: true, :numericality => { :only_integer => true }
 	validates_presence_of :project_title
+	validates_presence_of :currency_id
 	
 	before_save do |invoice| 
 		client = Client.find_by_id(invoice.client_id)
