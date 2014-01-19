@@ -21,6 +21,13 @@
     <% clients_array = @clients.map { |client| [client.name, client.id] } %>
     <%= f.select :client_id, options_for_select(clients_array), { :include_blank=>false }, { :class => 'form-control' } %>
   </div>
+  
+  <div class="field">
+    <%= f.label :currency_id %><br>
+    <% currencies_array = @currencies.map { |currency| [currency.title, currency.id] } %>
+    <%= f.select :currency_id, options_for_select(currencies_array), { :include_blank=>false }, { :class => 'form-control' } %>
+  </div>
+  
   <div class="field">
   	<%= f.fields_for :invoice_items do |builder| %>
 	  	<%= render 'invoice_item_fields', f: builder %>

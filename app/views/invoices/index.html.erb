@@ -17,9 +17,10 @@
     <% @invoices.each do |invoice| %>
       <tr>
         <td><%= link_to invoice.project_title, invoice %></td>
-        <% unless @clients.find_by_id(invoice.client_id).nil? %>
-       		<td><%= link_to @clients.find_by_id(invoice.client_id).name, 
-        						client_invoices_url(@clients.find_by_id(invoice.client_id)) %></td>
+        <% client_id = @clients.find_by_id(invoice.client_id) %>
+        <% unless client_id.nil? %>
+       		<td><%= link_to client_id.name, 
+        						client_invoices_url(client_id) %></td>
         <% else %>
         	<td>[Client Deleted]</td>
         <% end %>

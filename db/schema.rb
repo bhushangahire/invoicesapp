@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140112005456) do
+ActiveRecord::Schema.define(version: 20140118140319) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20140112005456) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "email"
+  end
+
+  create_table "currencies", force: true do |t|
+    t.string   "title"
+    t.string   "symbol"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "invoice_items", force: true do |t|
@@ -36,19 +44,8 @@ ActiveRecord::Schema.define(version: 20140112005456) do
     t.datetime "updated_at"
   end
 
-  create_table "invoices", force: true do |t|
-    t.string   "project_title"
-    t.integer  "client_id"
-    t.text     "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "slug"
-    t.integer  "user_id"
-    t.integer  "invoice_type"
-    t.integer  "invoice_status_id"
-  end
-
-  add_index "invoices", ["slug"], name: "index_invoices_on_slug"
+# Could not dump table "invoices" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: true do |t|
     t.string   "name"
