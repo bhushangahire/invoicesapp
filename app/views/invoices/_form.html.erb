@@ -10,6 +10,13 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="field">
+  	<%= f.radio_button(:invoice_type, "Estimate") %>
+  	<%= f.label(:invoice_type_invoice, "Estimate") %>
+  	<%= f.radio_button(:invoice_type, "Invoice") %>
+  	<%= f.label(:invoice_type_invoice, "Invoice") %>
+  </div>
 
   <div class="field">
   

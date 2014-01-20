@@ -2,12 +2,12 @@ module SessionsHelper
 	
 	
 	
-	def admin_user
+	def current_user
 		@admin_user ||= User.find_by_remember_token(cookies[:remember_token])
 	end
 	
 	def signed_in?
-		!admin_user.nil?
+		!current_user.nil?
 	end
 	
 	

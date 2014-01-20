@@ -1,0 +1,6 @@
+<%= form_for(@invoice) do |f| %>
+	<div>
+		<%= f.hidden_field :invoice_status_id, value: '1' %>
+		<%= f.submit "Mark as paid", class: "btn btn-large btn-primary" %>
+	</div>
+<% end %>

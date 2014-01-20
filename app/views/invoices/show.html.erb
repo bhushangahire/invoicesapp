@@ -1,7 +1,10 @@
 <% provide(:title, "All Invoices") %>
 <p id="notice"><%= notice %></p>
 
+<%= render 'paid_form' if signed_in? %>
+
 <div class="invoice-header">
+	<p><%= @invoice.invoice_type %></p>
 	<h4 class="inv-company-title"><%= @user.user_company %></h4>
 </div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119124355) do
+ActiveRecord::Schema.define(version: 20140119131923) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -44,8 +44,18 @@ ActiveRecord::Schema.define(version: 20140119124355) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "invoices" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "invoices", force: true do |t|
+    t.string   "project_title"
+    t.integer  "client_id"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+    t.integer  "user_id"
+    t.string   "invoice_type"
+    t.integer  "invoice_status_id"
+    t.integer  "currency_id"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

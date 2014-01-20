@@ -1,5 +1,5 @@
 class Invoice < ActiveRecord::Base
-	attr_accessible :client_id, :project_title, :notes, :invoice_items_attributes, :slug, :user_id, :currency_id
+	attr_accessible :client_id, :project_title, :notes, :invoice_items_attributes, :slug, :user_id, :currency_id, :invoice_type, :invoice_status_id
 	has_many :invoice_items, dependent: :destroy
 	has_one :currency
 	accepts_nested_attributes_for :invoice_items, :reject_if => lambda { |a| a[:item_title].blank? }, 
@@ -10,6 +10,7 @@ class Invoice < ActiveRecord::Base
 	validates :client_id, presence: true, :numericality => { :only_integer => true }
 	validates_presence_of :project_title
 	validates_presence_of :currency_id
+	validates_presence_of :invoice_type
 	
 	before_save do |invoice| 
 		client = Client.find_by_id(invoice.client_id)
@@ -24,5 +25,12 @@ class Invoice < ActiveRecord::Base
 	def total_price
 	    invoice_items.to_a.sum(:item_amount)
 	end
+	
+#	def mark_paid
+#		@invoice = Invoice.find_by_id(params[:id])
+#		@invoice.paid = true
+#		@invoice.save
+#		redirect_to @invoice
+#	end
 	
 end
