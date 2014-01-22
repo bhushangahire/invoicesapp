@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119131923) do
+ActiveRecord::Schema.define(version: 20140122055854) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -54,7 +54,8 @@ ActiveRecord::Schema.define(version: 20140119131923) do
     t.integer  "user_id"
     t.string   "invoice_type"
     t.integer  "currency_id"
-    t.boolean  "paid",	:default => false
+    t.boolean  "paid",          default: false
+    t.integer  "discount"
   end
 
   create_table "users", force: true do |t|

@@ -48,8 +48,15 @@
 				 		</td>
 			 		</tr>
 			 	<% end %>
+			 	<% unless @invoice.discount.nil? %>
+			 		<tr class="row-discount">
+			 			<td class="title">Discount</td> 
+			 			<td class="pull-right"><%= @invoice.discount %>%</td>
+			 		</tr>
+			 	<% end %>
 		 	</tbody>
 		</table>
+		
 		<p class="item-total"><span>Total</span> <%= @currency.symbol %> <%= @invoice.total_price :item_amount %> </p>
 		<div class="stripe"></div>
 	</div>

@@ -110,6 +110,14 @@
 				}
 			}
 		}
+		.row-discount {
+			font-family: $serif;
+			font-size: 18px;
+			.title {
+				font-style: italic;
+				font-size: 18px;
+			}
+		}
 	}
 	.item-total {
 		width: 100%;

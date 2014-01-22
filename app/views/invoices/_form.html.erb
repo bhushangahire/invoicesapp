@@ -42,6 +42,10 @@
    <p><%= link_to_add_fields "Add Item Detail", f, :invoice_items %></p>
   </div>
   <div class="field">
+  	<%= f.label :discount %>
+  	<%= f.text_field :discount %>
+  </div>
+  <div class="field">
     <%= f.label :notes %><br>
     <%= f.text_area :notes, class: "form-control" %>
     <%= f.hidden_field :slug %>
