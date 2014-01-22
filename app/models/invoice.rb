@@ -28,7 +28,7 @@ class Invoice < ActiveRecord::Base
 	    total = invoice_items.sum amount
 	    unless self.discount.blank?
 	    	discount = total * self.discount / 100
-		    total = total - discount
+		    total -= discount
 		else
 			total
 		end

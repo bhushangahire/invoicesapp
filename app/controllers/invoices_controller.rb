@@ -46,9 +46,11 @@ class InvoicesController < ApplicationController
    @invoice = Invoice.create(params[:invoice])
    @clients = Client.all
    @currencies = Currency.all
+   @user = User.first
 
     respond_to do |format|
       if @invoice.save
+      	InvoiceMailer.send_receipt(@user).deliver
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
         format.json { render action: 'show', status: :created, location: @invoice }
       else

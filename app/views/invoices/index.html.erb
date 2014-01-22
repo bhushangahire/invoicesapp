@@ -31,7 +31,7 @@
         <% end %>
         <td class="list-type"><%= invoice.invoice_type %></td>
         <td class="list-paid"><% if invoice.paid? %> Paid <% else %> Pending <% end %></td>
-        <td><%= link_to 'Delete', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '×', invoice, method: :delete, data: { confirm: 'Are you sure?' }, class: "close" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,4 +39,4 @@
 
 <br>
 
-<%= link_to 'New Invoice', new_invoice_path %>
+<%= link_to 'New Invoice', new_invoice_path, class: "btn btn-default" %>

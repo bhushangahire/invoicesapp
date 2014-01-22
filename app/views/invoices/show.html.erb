@@ -35,13 +35,13 @@
 			<tbody>
 			 	<% for invoice_item in @invoice.invoice_items %>
 				 	<tr>
-				 		<td>
+				 		<td class=" col-md-8">
 				 			<p class="caps bold item-title"><%= invoice_item.item_title %></p>
 					 		<p class="item-desc"><%= invoice_item.item_desc %></p>
 				 		</td>
-				 		<td class="pull-right item-amount">
+				 		<td class="pull-right item-amount  col-md-4">
 				 			<% if !invoice_item.item_amount.blank? %>
-					 			<p class="item-amount"><%= number_with_delimiter(invoice_item.item_amount, delimiter: ',')   %></p>
+					 			<p class="item-amount pull-right"><%= number_with_delimiter(invoice_item.item_amount, delimiter: ',')   %></p>
 					 		<% else %>
 					 			-
 					 		<% end %>
@@ -70,26 +70,27 @@
 <div class="stripe"></div>
 
 <div class="invoice-footer">
-	<div class="inv-user">
-		<span class="user-name"><%= @user.name %></span>
-		<span class="user-title"><%= @user.user_company %></span>
+	<div class="inv-user row col-lg-5 col-sm-12">
+		<div class="user-name "><%= @user.name %></div>
+		<div class="user-title"><%= @user.user_company %></div>
 	</div>
-	<ul class="inv-user-meta">
-		<li><%= @user.email %></li>
-		<li><%= number_to_phone(@user.user_phone, country_code: 91) %></li>
-		<li><%= @user.user_weburl %></li>
-	</ul>
+	<div class="row col-lg-7 col-sm-12">
+		<ul class="inv-user-meta">
+			<li><%= @user.email %></li>
+			<li><%= number_to_phone(@user.user_phone, country_code: 91) %></li>
+			<li><%= @user.user_weburl %></li>
+		</ul>
+	</div>
 </div>
 
 <% if @invoice.paid? || signed_in? %>
-
-<div class="invoice-controls">
-	<%= render 'paid_form' %>
-	
-</div>
+	<div class="invoice-controls">
+		<%= render 'paid_form' %>
+	</div>
 <% end %>
+
 <% if signed_in? %>
-	<div class="inv-nav">
+	<div class="inv-nav row">
 		
 			<%= link_to 'Edit Invoice', edit_invoice_path(@invoice) %> |
 			<%= link_to 'Back to Invoices', invoices_path %>

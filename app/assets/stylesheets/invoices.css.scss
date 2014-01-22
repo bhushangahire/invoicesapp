@@ -141,20 +141,18 @@
 
 
 .invoice-footer {
-
 	padding: 10px 0;
 	border-top: 1px solid $borderc;
-/*	border-bottom: 1px solid $borderc;*/
-	width: 100%;
 	overflow: auto;
 	ul {
-		float: right;
+		margin-left: 0;
+		padding-left: 0;
 		margin-top: 5px;
 		li {
 			float: left;
 			list-style: none;
-			margin-left: 15px;
-			padding-left: 10px;
+			margin: 0 5px;
+			padding: 0 15px;
 			border-left: 1px solid $borderc;
 			&:first-child {
 				border-left: none;
@@ -170,11 +168,11 @@
 		display: inline-block;
 	}
 	.user-title {
+		display: inline-block;
 		text-transform: uppercase;
 		font-weight: bold;
 	}
 	.inv-user {
-		float: left;
 		padding-bottom: 15px;
 	}
 }
@@ -232,4 +230,99 @@
 	}	
 }
 
- 
+.new_invoice {
+	input, textarea {
+		border: none;
+		box-shadow: none;
+		height: auto;
+		&:focus {
+			box-shadow: none;
+		}
+	}
+	.field-invoice-title {
+		margin-top: 10px;
+		margin-bottom: 20px;
+		padding: 0;
+		input {
+			font-size: 48px;
+			font-weight: 100;
+			&:focus {
+				box-shadow: none;
+			}
+		}
+	}
+	.field-discount {
+		border-left: 1px solid $borderc;
+		padding-bottom: 20px;
+		input {
+			padding:  0;
+		}
+	}
+	.field-notes {
+		textarea {
+			resize: none;
+			padding: 0;
+		}
+	}
+	.field-submit {
+		margin-bottom: 10px;
+		.btn {
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 14px;
+		}
+	}
+	.field-invoice-items {
+		padding-bottom: 10px;
+		.invoice-item-row {
+
+			border-bottom: 1px solid $borderc;
+			padding: 20px 0 0;
+			margin-bottom: 0;
+			textarea, input {
+				resize: none;
+				color: $primary-dark;
+			}
+			.field-item-title {
+				font-size: 18px;
+				font-weight: bold;
+				padding-bottom: 0;
+			}
+			.field-item-desc {
+				font-family: $serif;
+				font-style: italic;
+			}
+			.invoice-item-amount {
+				border-left: 1px solid $borderc;
+				padding-bottom: 20px;
+				input {
+					font-size: 18px;
+					font-weight: bold;
+					font-family: $serif;
+					font-style: italic;
+				}	
+			}
+			.close-btn {
+				border-left: 1px solid $borderc;
+				text-align: center;
+				border-right: 1px solid $borderc;
+				a {
+					float: none;
+					font-size: 40px;
+				}
+			} 
+		}
+	}
+	.field-add-item {
+		padding-bottom: 20px;
+		margin-top: 20px;
+	}
+}
+
+
+
+.add_fields {
+	margin-top: 15px;
+	
+}
+

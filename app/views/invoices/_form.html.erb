@@ -11,47 +11,53 @@
     </div>
   <% end %>
   
-  <div class="field">
-  	<%= f.radio_button(:invoice_type, "Estimate") %>
-  	<%= f.label(:invoice_type_invoice, "Estimate") %>
-  	<%= f.radio_button(:invoice_type, "Invoice") %>
-  	<%= f.label(:invoice_type_invoice, "Invoice") %>
-  </div>
-
-  <div class="field">
+  <div class=" col-md-12 field-invoice-title"><%= f.text_field :project_title, placeholder: "Invoice Title", class: "form-control" %></div>
   
-    <%= f.label :project_title %><br>
-    <%= f.text_field :project_title, class: "form-control" %>
-  </div>
-  <div class="field">
+  
+
+  <div class="form-group col-md-4">
     <%= f.label :client_id %><br>
     <% clients_array = @clients.map { |client| [client.name, client.id] } %>
     <%= f.select :client_id, options_for_select(clients_array, @invoice.client_id), { :include_blank=>false }, { :class => 'form-control' } %>
   </div>
   
-  <div class="field">
+  <div class="form-group col-md-4">
     <%= f.label :currency_id %><br>
     <% currencies_array = @currencies.map { |currency| [currency.title, currency.id] } %>
     <%= f.select :currency_id, options_for_select(currencies_array, @invoice.currency_id), { :include_blank=>false }, { :class => 'form-control' } %>
   </div>
   
-  <div class="field">
-  	<%= f.fields_for :invoice_items do |builder| %>
-	  	<%= render 'invoice_item_fields', f: builder %>
-	<% end %>
-   <p><%= link_to_add_fields "Add Item Detail", f, :invoice_items %></p>
+  <div class="form-group col-xs-4">
+  	<%= f.label :invoice_type %><br />
+  	<div class="radio-inline">
+  		<%= f.radio_button(:invoice_type, "Estimate") %>
+  		<%= f.label(:invoice_type_estimate, "Estimate") %>
+  	</div>
+  	<div class="radio-inline">
+  		<%= f.radio_button(:invoice_type, "Invoice") %>
+	  	<%= f.label(:invoice_type_invoice, "Invoice") %>
+	 </div>
   </div>
-  <div class="field">
-  	<%= f.label :discount %>
-  	<%= f.text_field :discount %>
+  
+  <div class="form-group col-lg-12 field-invoice-items">
+  	<div class="col-lg-10">
+	  	<%= f.fields_for :invoice_items do |builder| %>
+		  	<%= render 'invoice_item_fields', f: builder %>
+		<% end %>
+	</div>
+   	<div class="field-add-item col-lg-2"><%= link_to_add_fields "Add Item", f, :invoice_items %></div>
   </div>
-  <div class="field">
+  <div class="form-group col-xs-10 field-notes">
     <%= f.label :notes %><br>
-    <%= f.text_area :notes, class: "form-control" %>
+    <%= f.text_area :notes, class: "form-control", placeholder: "Additional details for the client" %>
     <%= f.hidden_field :slug %>
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
-  <div class="actions">
-    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <div class="form-group col-xs-2 field-discount">
+  	<%= f.label :discount %>
+  	<%= f.text_field :discount, placeholder: "Amount in %", class: "form-control" %>
+  </div>
+  <div class="actions col-xs-12 field-submit invoice-controls">
+    <%= f.submit "Create Invoice", class: "btn btn-primary btn-lg centered" %>
   </div>
 <% end %>
