@@ -1,73 +1,91 @@
-<% provide(:title, "All Invoices") %>
+<% provide(:title, @invoice.project_title) %>
 <p id="notice"><%= notice %></p>
 
-<%= render 'paid_form' if signed_in? %>
-
 <div class="invoice-header">
-	<p><%= @invoice.invoice_type %></p>
-	<h4 class="inv-company-title"><%= @user.user_company %></h4>
-</div>
-
-
-
-<h2 class="inv-project-title"><span class="caps"></span>Project</span> / <%= @invoice.project_title %></h2>
-
-<p>
-	<%= l @invoice.created_at, :format => :short %>
-</p>
-
-<p>
-  <span class="inv-client-name"><%= @client.name %></span><br />
-  <span class="inv-client-address"><%= @client.address %></span>
- </p>
-
-
-
-<div class="invoice-details">
-	<table class="table">
-		<thead>
-		  <tr>
-		    <th>Description</th>
-		    <th>Amount (in <%= @currency.symbol %>)</th>
-		   </tr>
-		</thead>
-		<tbody>
-		 	<% for invoice_item in @invoice.invoice_items %>
-			 	<tr>
-			 		<td>
-			 			<h3 class="caps bold"><%= invoice_item.item_title %><br /></h3>
-				 		<%= invoice_item.item_desc %>
-			 		</td>
-			 		<td class="pull-right">
-			 			<% if !invoice_item.item_amount.blank? %>
-				 			<%= number_with_delimiter(invoice_item.item_amount, delimiter: ',')   %>
-				 		<% else %>
-				 			-
-				 		<% end %>
-			 		</td>
-		 		</tr>
-		 	<% end %>
-	 	</tbody>
-	</table>
+	<%=  image_tag "hc-promo.png", alt: "Hash Cookies Logo" %>
+	<p class="inv-company-title"><%= @user.user_company %> <span class="inv-date"><%= @invoice.invoice_type %> #<%= @invoice.id %></span></p>
 	
-	<p class="pull-right">Total: <%= @invoice.invoice_items.sum :item_amount %></p>
 </div>
-<p>
+
+<div class="stripe"></div>
+
+<div class="inv-client-info">
+	<div class="inv-client">
+		<span class="inv-client-name"><%= @client.name %></span><br />
+		<span class="inv-client-address"><%= @client.address %></span>
+	</div>
+	<div class="inv-proj">
+		<span class="inv-project-title"><%= @invoice.project_title %></span><br />
+		<span class="caps"><%= l @invoice.created_at, :format => :long %></span>
+	</div>
+</div>
+
+<div class="stripe"></div>
+	
+<div class="invoice-wrapper">	
+	
+	<div class="invoice-details">
+		<table class="table">
+			<thead>
+			  <tr>
+			    <th>Description</th>
+			    <th class="pull-right">Amount (in <%= @currency.symbol %>)</th>
+			   </tr>
+			</thead>
+			<tbody>
+			 	<% for invoice_item in @invoice.invoice_items %>
+				 	<tr>
+				 		<td>
+				 			<p class="caps bold item-title"><%= invoice_item.item_title %></p>
+					 		<p class="item-desc"><%= invoice_item.item_desc %></p>
+				 		</td>
+				 		<td class="pull-right item-amount">
+				 			<% if !invoice_item.item_amount.blank? %>
+					 			<p class="item-amount"><%= number_with_delimiter(invoice_item.item_amount, delimiter: ',')   %></p>
+					 		<% else %>
+					 			-
+					 		<% end %>
+				 		</td>
+			 		</tr>
+			 	<% end %>
+		 	</tbody>
+		</table>
+		<p class="item-total"><span>Total</span> <%= @currency.symbol %> <%= @invoice.total_price :item_amount %> </p>
+		<div class="stripe"></div>
+	</div>
+</div> <!--end invoice wrapper-->
+
+<div class="invoice-notes">
   <strong>Notes:</strong><br />
   <%= @invoice.notes %>
-</p>
+</div>
+
+<div class="stripe"></div>
 
 <div class="invoice-footer">
-	<%= @user.name %><br />
-	<%= @user.user_title %>
-	
-	<ul>
+	<div class="inv-user">
+		<span class="user-name"><%= @user.name %></span>
+		<span class="user-title"><%= @user.user_company %></span>
+	</div>
+	<ul class="inv-user-meta">
 		<li><%= @user.email %></li>
 		<li><%= number_to_phone(@user.user_phone, country_code: 91) %></li>
 		<li><%= @user.user_weburl %></li>
 	</ul>
-	
 </div>
 
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-<%= link_to 'Back', invoices_path %>
+<% if @invoice.paid? || signed_in? %>
+
+<div class="invoice-controls">
+	<%= render 'paid_form' %>
+	
+</div>
+<% end %>
+<% if signed_in? %>
+	<div class="inv-nav">
+		
+			<%= link_to 'Edit Invoice', edit_invoice_path(@invoice) %> |
+			<%= link_to 'Back to Invoices', invoices_path %>
+
+	</div>
+<% end %>

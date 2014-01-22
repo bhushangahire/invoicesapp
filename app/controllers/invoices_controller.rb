@@ -10,6 +10,8 @@ class InvoicesController < ApplicationController
   	 	 @invoices = @user.invoices
 	 else
 	 	 @invoices = Client.find_by_id(params[:client_id]).invoices
+	 	 @single_client = true
+	 	 @client = Client.find_by_id(params[:client_id])
 	 end
 	 
   end

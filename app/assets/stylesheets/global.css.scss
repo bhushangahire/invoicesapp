@@ -1,0 +1,14 @@
+@mixin td($speed) {
+	-webkit-transition-duration: $speed;
+	-moz-transition-duration: $speed;
+	-ms-transition-duration: $speed;
+	transition-duration: $speed;
+}
+
+$primary: "Proxima Nova", "Avenir Next", Helvetica Neue, Helvetica, Arial, sans-serif;
+$serif: "FreightText", Palatino, serif;
+$primary-dark: #37393e;
+$grey: #666;
+$lightBlue: #e7edf1; 
+$borderc: #eaeef0;
+$black: #000;

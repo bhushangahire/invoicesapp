@@ -1,3 +1,227 @@
 // Place all the styles related to the invoices controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "global.css.scss";
+
+.invoice-wrapper {
+	margin-top: 5px;
+}
+
+.invoice-header {
+	margin: 0 auto;
+	padding-bottom: 20px;
+	overflow: auto;
+	img {
+		float: left;
+		margin-right: 20px;
+		margin-top: 10px;
+	}
+	.inv-company-title {
+		font-size: 32px;
+		font-weight: bold;
+		margin-bottom: 0;
+		text-transform: uppercase;
+		float: left;
+		.inv-date {
+			display: block;
+			margin-top: -7px;
+			font-size: 16px;
+			font-weight: normal;				
+		}
+	}
+}
+
+.stripe {
+	height: 5px;
+	border-radius: 5px;
+	width: 100%;
+	background: url(bg-stripes.png) fixed;
+}
+
+.inv-client-info {
+	overflow: auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	.inv-proj {
+		float: left;
+		.inv-project-title {
+			font-weight: bold;
+			color: $black;
+			font-size: 22px;
+			span {
+				display: block;
+				font-size: 14px;
+				font-weight: normal;		
+				text-transform: uppercase;
+				margin-bottom: 5px;
+			}
+		}
+	}
+	
+	.inv-client {
+		float: right;
+		text-align: right;
+		.inv-client-name {
+			font-size: 22px;
+			font-weight: bold;
+		}
+		.inv-client-address {
+			font-size: 14px;
+		}
+	}
+}
+
+.inv-type {
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+
+.invoice-details {
+	font-family: $primary;
+	table {
+		margin-bottom: 0;
+		thead tr {
+			border-top: none;
+			th {
+				border-bottom: none !important;
+				
+				padding: 8px 0 !important;
+				text-transform: uppercase;
+			}
+		}
+		tr {
+			border-top: 1px solid $borderc;
+			td {
+				border-top: none;
+				padding: 15px 0 10px;
+				.item-title {
+					font-size: 18px;
+					font-weight: bold;
+					margin-bottom: 0;
+				}
+				.item-desc {
+					font-size: 14px;
+					color: $grey;
+				}
+				.item-amount {
+					font-size: 18px;
+				}
+			}
+		}
+	}
+	.item-total {
+		width: 100%;
+		text-align: right;
+		font-size: 18px;
+		
+		padding: 10px 0px 0px;
+		font-weight: bold;
+		border-top: 1px solid $borderc;
+		span {
+			font-weight: normal;
+			display: inline-block;
+			border-right: 4px solid white;
+			margin-right: 5px;
+			font-family: $serif;
+			font-style: italic;
+		}
+	}
+}
+
+
+
+.invoice-footer {
+
+	padding: 10px 0;
+	border-top: 1px solid $borderc;
+/*	border-bottom: 1px solid $borderc;*/
+	width: 100%;
+	overflow: auto;
+	ul {
+		float: right;
+		margin-top: 5px;
+		li {
+			float: left;
+			list-style: none;
+			margin-left: 15px;
+			padding-left: 10px;
+			border-left: 1px solid $borderc;
+			&:first-child {
+				border-left: none;
+			}
+		}
+	}
+	.user-name {
+		font-size: 22px;
+		margin-bottom: 0;
+		border-right: 1px solid $borderc;
+		padding-right: 10px;
+		margin-right: 7px;
+		display: inline-block;
+	}
+	.user-title {
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	.inv-user {
+		float: left;
+		padding-bottom: 15px;
+	}
+}
+
+.invoice-notes {
+	padding: 20px 0;
+	max-width: 900px;
+}
+
+.invoice-controls {
+	padding-top: 15px;
+	background: #f3f6f8;
+	border-radius: 5px;
+	border: 1px solid $borderc;
+	padding: 2.5% 5%;
+	text-align: center;
+	.paid-form {
+		.paid {
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: 22px;	
+			margin-top: 5px;
+			display: inline-block;
+		}
+		.btn {
+			margin-left: 10px;
+			margin-top: -7px;
+		}
+	} 
+	
+}
+
+.inv-nav {
+	margin-top: 15px;
+}
+
+.list-project-title {
+	width: 20%;
+}
+
+.list-client-name {
+	width: 20%;
+}
+
+.table.list {
+	tbody {
+		border-right: 1px solid #eee;
+		border-left: 1px solid #eee;
+		border-bottom: 1px solid #eee;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+	thead th {
+		border-bottom: none !important;
+	}	
+}
+
+ 

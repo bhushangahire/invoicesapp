@@ -1,29 +1,66 @@
 @import "bootstrap";
 @import "bootstrap/theme";
+@import "global.css.scss";
+
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
 
 header, .debug_dump {
 	margin: 50px auto;
 }
 
 body {
-	font-family:  "Proxima Nova", Helvetica, sans-serif;
+	font-family:  $primary;
+	background: $lightBlue url(bg-stripes.png) fixed;
+	color: $primary-dark;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: $primary;
 }
 
 .container {
-	font-family: "Brandon Grotesque", sans-serif;
+	background: white;
+	padding: 30px 2.5%;
+	box-shadow: 1px 2px 5px #c7ced3;
+	-moz-box-shadow: 1px 2px 5px #c7ced3;
 }
 
-.invoice-details {
-	background: #eee;
-	padding: 25px;
-	font-family: "Proxima Nova";
-	table {
-		padding: 10px;
-		tr {
-			border-bottom: 1px solid #ddd;
-			td {
-				border-top: none;
-			}
-		}
+
+.navbar {
+	@include td(400ms);
+	background: transparent !important;
+	box-shadow: none;
+	max-width: 1180px;
+	border: none;
+	margin: 0 auto;
+	a {
+		color: #000 !important;
+	}	
+	.navbar-brand {
+		text-transform: uppercase;
+		font-weight: bold;
+		font-family: "Futura Std", "Avenir Next", sans-serif;
 	}
+}
+
+.debug_dump {
+	display: none;
+	opacity: .1;
+	position: absolute;
+	bottom: 0;
+	@include td(400ms);
+	&:hover {
+		opacity: 1;
+	}
+}
+
+#footer {
+	max-width: 1150px;
+	margin: 20px auto;
+	text-align: center;	
 }

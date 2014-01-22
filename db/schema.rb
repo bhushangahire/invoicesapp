@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 20140119131923) do
     t.string   "slug"
     t.integer  "user_id"
     t.string   "invoice_type"
-    t.integer  "invoice_status_id"
     t.integer  "currency_id"
+    t.boolean  "paid",	:default => false
   end
 
   create_table "users", force: true do |t|
