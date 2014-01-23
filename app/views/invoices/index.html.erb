@@ -8,35 +8,6 @@
 	<span><%= @client.name %>'s Invoices</span>
 <% end %>
 
-<table class="table table-striped table-responsive list">
-  <thead>
-    <tr>
-      <th>Project title</th>
-      <th>Client</th>
-      <th>Type</th>
-      <th>Status</th>
-    </tr>
-  </thead>
+<%= render 'list_invoices' %>
 
-  <tbody>
-    <% @invoices.each do |invoice| %>
-      <tr>
-        <td class="list-project-title"><%= link_to invoice.project_title, invoice %></td>
-        <% client_id = @clients.find_by_id(invoice.client_id) %>
-        <% unless client_id.nil? %>
-       		<td class="list-client-name"><%= link_to client_id.name, 
-        						client_invoices_url(client_id) %></td>
-        <% else %>
-        	<td class="list-client-name">[Client Deleted]</td>
-        <% end %>
-        <td class="list-type"><%= invoice.invoice_type %></td>
-        <td class="list-paid"><% if invoice.paid? %> Paid <% else %> Pending <% end %></td>
-        <td><%= link_to '×', invoice, method: :delete, data: { confirm: 'Are you sure?' }, class: "close" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Invoice', new_invoice_path, class: "btn btn-default" %>
+<%= link_to 'New Invoice', new_invoice_path, class: "btn btn-primary" %>

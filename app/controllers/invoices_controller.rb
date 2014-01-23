@@ -6,13 +6,19 @@ class InvoicesController < ApplicationController
   # GET /invoices.json
   def index
   	 @clients = Client.all
-  	 if params[:client_id].nil?
-  	 	 @invoices = @user.invoices
-	 else
-	 	 @invoices = Client.find_by_id(params[:client_id]).invoices
-	 	 @single_client = true
-	 	 @client = Client.find_by_id(params[:client_id])
-	 end
+  	 if signed_in?
+  	 	if params[:client_id].nil?
+  	 		 	 @invoices = @user.invoices
+  	 	else
+  	 		 @invoices = Client.find_by_id(params[:client_id]).invoices
+  	 		 @single_client = true
+  	 		 @client = Client.find_by_id(params[:client_id])
+  	 	end
+  	 else
+  	 	flash[:success] = "Not allowed"
+  	 	redirect_to root_path
+  	 end
+  	
 	 
   end
 
@@ -93,11 +99,6 @@ class InvoicesController < ApplicationController
     def set_user
     	@user = User.find_by_remember_token(cookies[:remember_token])
     end
-
-#    # Never trust parameters from the scary internet, only allow the white list through.
-#    def invoice_params
-#      params.require(:invoice).permit(:project_title, :client_id, :notes)
-#    end
     
 
 end

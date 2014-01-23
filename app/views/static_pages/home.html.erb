@@ -1,9 +1,19 @@
-<div class="center hero-unit">
-	<h1>Hash Cookies Invoice App</h1>
-	<p>
-		This is the home page, suckers.
-	</p>
+<% if signed_in? %>
+	
+	<%= render 'invoices/list_invoices' %>
+	
+	<%= link_to 'New Invoice', new_invoice_path, class: "btn btn-primary" %>
+	
+	
+<% else %>
+	<div class="center hero-unit">
+		<h1>Hash Cookies Invoice App</h1>
+		<p>
+			This is the home page, suckers.
+		</p>
+	
+	</div>
+	
+	<p>Crafted by Hash Cookies</p>
+<% end %>
 
-</div>
-
-<p>Crafted by Hash Cookies</p>

@@ -75,7 +75,7 @@
 		<div class="user-title"><%= @user.user_company %></div>
 	</div>
 	<div class="row col-lg-7 col-sm-12">
-		<ul class="inv-user-meta">
+		<ul class="inv-user-meta pull-right">
 			<li><%= @user.email %></li>
 			<li><%= number_to_phone(@user.user_phone, country_code: 91) %></li>
 			<li><%= @user.user_weburl %></li>

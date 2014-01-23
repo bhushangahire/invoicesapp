@@ -1,12 +1,12 @@
-<fieldset class="invoice-item-row row form-group">
-			<div class="row col-xs-8">
+<fieldset class="invoice-item-row row col-lg-12">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 				<%= f.text_field :item_title, class: "form-control field-item-title", placeholder: "Item Title" %>
 				<%= f.text_area :item_desc, class: "form-control field-item-desc", placeholder: "Description", rows: 2 %>
 			</div>
-			<div class="row col-md-3  invoice-item-amount">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-10 invoice-item-amount">
 				<%= f.text_field :item_amount, class: "form-control field-item-amount", placeholder: "Amount" %>
 			</div>
-			<div class="row close-btn col-sm-1">
+			<div class="close-btn col-lg-1 col-md-1 col-sm-1 col-xs-2">
 				<%= f.hidden_field :_destroy %>
 				<%= link_to "×", "#", class: "remove_fields btn close" %>
 			</div>
