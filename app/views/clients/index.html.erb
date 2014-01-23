@@ -1,10 +1,14 @@
-<ul><% @clients.each do |client| %>
-	<li>
-		<h3><%= client.name %></h3>
-		<span><%= link_to "Invoices", client_invoices_url(client) %></span>
-		<span><%= link_to "Delete", client, method: :delete, data: { confirm: "Are you sure?" } %></span>
+<ul class="list-unstyled clients-list"><% @clients.each do |client| %>
+	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+		<span><%= link_to "×", client, method: :delete, data: { confirm: "Are you sure?" }, class: "close" %></span>
+		<div class="client-info-wrap">
+			<h3 class="client-name"><%= link_to client.name, client_invoices_url(client) %></h3>
+			<p class="client-address"><%= client.address %></p>
+		</div>
 	</li>
 <% end %>
 </ul>
 
-<%= link_to "New Client", new_client_path %>
+<div class="actions col-xs-12 field-submit invoice-controls">
+	<%= link_to "New Client", new_client_path, class: "btn btn-primary" %>
+</div>

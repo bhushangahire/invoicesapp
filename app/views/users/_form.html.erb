@@ -12,18 +12,46 @@
 	    </div>
 	  <% end %>
 	
-	<%= f.label :name %>
-	<%= f.text_field :name %>
+	<div class="form-group">
+		<%= f.label :name %>
+		<%= f.text_field :name, class: "form-control" %>
+	</div>
 	
-	<%= f.label :email %>
-	<%= f.text_field :email %>
+	<div class="form-group">
+		<%= f.label :email %>
+		<%= f.text_field :email, class: "form-control" %>
+	</div>
 	
-	<%= f.label :password %>
-	<%= f.password_field :password %>
-
-	<%= f.label :password_confirmation, "Confirmation" %>
-	<%= f.password_field :password_confirmation %>
+	<div class="row">
+		<div class="form-group col-md-6">
+			<%= f.label :password %>
+			<%= f.password_field :password, class: "form-control" %>
+		</div>
+		
+		<div class="form-group col-md-6">
+			<%= f.label :password_confirmation, "Confirmation" %>
+			<%= f.password_field :password_confirmation, class: "form-control" %>
+		</div>
+	</div>
 	
-	<%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+	<div class="row">
+		<div class="form-group col-md-3">
+			<%= f.text_field :user_title, placeholder: "Designation", class: "form-control" %>
+		</div>
+		<div class="form-group col-md-3">
+			<%= f.text_field :user_phone, placeholder: "Phone", class: "form-control" %>
+		</div>
+		<div class="form-group col-md-3">
+			<%= f.text_field :user_tagline, placeholder: "Company Tagline", class: "form-control" %>
+		</div>
+		
+		<div class="form-group col-md-3">
+			<%= f.text_field :user_company, placeholder: "Company Name", class: "form-control" %>
+		</div>
+	</div>
+	
+	<div class="actions col-xs-12 field-submit invoice-controls">
+		<%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+	</div>
 
 <% end %>

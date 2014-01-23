@@ -336,3 +336,55 @@
 	font-weight: bold;
 	border-radius: 3px;
 }
+
+.new_client {
+	.field-client-name {
+		margin-top: 10px;
+		margin-bottom: 20px;
+		padding: 0;
+		input {
+			font-size: 48px;
+			border: none;
+			box-shadow: none;
+			height: auto;
+			font-weight: 100;
+			&:focus {
+				box-shadow: none;
+			}
+		}
+	}
+}
+
+.clients-list {
+	margin-bottom: 25px;
+	overflow: auto;
+	.row {
+
+	}
+	.client-name {
+		margin-bottom: 0;
+		font-weight: bold;
+		font-size: 20px;
+	}
+	.close {
+		font-weight: bold;
+		float: left;
+		text-transform: uppercase;
+		margin-top: 30px;
+		margin-right: 10px;
+		font-size: 30px;
+		opacity: 0;
+		-webkit-transition-duration: 400ms;
+	}
+	li:hover .close {
+		opacity: .3;
+	}
+	.client-info-wrap {
+		float: left;
+		width: 80%;
+	}
+}
+
+.sign-in-btn {
+	margin-top: 25px;
+}
