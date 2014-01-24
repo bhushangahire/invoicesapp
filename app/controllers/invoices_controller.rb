@@ -95,6 +95,13 @@ class InvoicesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def sendreceipt
+  	@invoice = Invoice.find_by_slug(params[:id])
+  	InvoiceMailer.send_receipt(@invoice).deliver
+  	redirect_to invoice_path(@invoice)
+  	flash[:notice] = "Email has been sent!"
+  end
  
 
   private

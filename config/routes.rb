@@ -1,6 +1,10 @@
 InvoicesApp::Application.routes.draw do
   resources :users
-  resources :invoices
+  resources :invoices do
+  	member do
+  		get 'sendreceipt'
+  	end
+  end
   resources :clients do
   	resources :invoices, only: [:index]
   end
