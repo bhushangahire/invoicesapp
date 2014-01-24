@@ -82,14 +82,14 @@
 	</div>
 </div>
 
-<% if @invoice.paid? || authorised? %>
+<% if authorised? %>
 	<div class="invoice-controls">
 		<%= render 'paid_form' %>
 	</div>
 <% end %>
 
 <% if authorised? %>
-	<div class="inv-nav row">
+	<div class="inv-nav row col-md-12">
 		
 			<%= link_to 'Edit Invoice', edit_invoice_path(@invoice) %> |
 			<%= link_to 'Back to Invoices', invoices_path %>

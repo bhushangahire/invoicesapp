@@ -3,12 +3,16 @@
 		<% if @invoice.paid? %>
 			<span class="paid">Paid</span>
 			<%= link_to "Send Receipt", sendreceipt_invoice_path(@invoice), class: "btn btn-primary" %>
-			
 		<% else %>
-			<% if signed_in? %>
-				<%= f.hidden_field :paid, value: true %>
-				<%= f.submit "Mark as paid", class: "btn btn-large btn-primary" %>
-			<% end %>
+				
+				<% if isEstimate? %>
+					<%= f.hidden_field :invoice_type, value: "Invoice" %>
+					<%= f.submit "Convert to Invoice", class: "btn btn-large btn-primary" %>
+				<% else %>
+					<!-- Is Invoice -->
+					<%= f.hidden_field :paid, value: true %>
+					<%= f.submit "Mark as paid", class: "btn btn-large btn-primary" %>
+				<% end %>
 		<% end %>
 	</div>
 <% end %>
