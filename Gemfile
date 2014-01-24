@@ -60,3 +60,6 @@ end
 
 # fix for javasciprt document ready stuff
 gem 'jquery-turbolinks'
+
+# for generating receipt pdfs
+gem 'prawn_rails'

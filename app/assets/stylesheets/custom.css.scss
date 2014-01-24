@@ -51,16 +51,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	}
 }
 
-.debug_dump {
-	display: none;
-	opacity: .1;
-	position: absolute;
-	bottom: 0;
-	@include td(400ms);
-	&:hover {
-		opacity: 1;
-	}
-}
+
 
 #footer {
 	max-width: 1150px;

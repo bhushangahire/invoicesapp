@@ -3,7 +3,7 @@ class InvoiceMailer < ActionMailer::Base
   
   def send_receipt(invoice)
   	@invoice = invoice
-  	@client = User.find(@invoice.client_id)
+  	@client = Client.find(@invoice.client_id)
   	mail(to: @client.email, subject: "Receipt")
   end
 end

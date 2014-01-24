@@ -9,7 +9,7 @@ class Invoice < ActiveRecord::Base
 	belongs_to :client
 	belongs_to :user
 	
-	validates :client_id, presence: true, :numericality => { :only_integer => true }
+	validates_presence_of :client_id
 	validates_presence_of :project_title
 	validates_presence_of :currency_id
 	validates_presence_of :invoice_type

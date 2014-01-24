@@ -1,6 +1,8 @@
-<h1>Editing invoice</h1>
+<div class="row">
+	<%= render 'form' %>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @invoice %> |
-<%= link_to 'Back', invoices_path %>
+<div class="row col-xs-12">
+	<%= link_to 'Show', @invoice %> |
+	<%= link_to 'Back to All Invoices', invoices_path %>
+</div>

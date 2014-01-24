@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	attr_accessible :name, :email, :password, :password_confirmation
-	has_many :clients
-	has_many :invoices
+	has_many :clients, dependent: :destroy
+	has_many :invoices, dependent: :destroy
 	has_secure_password
 	
 	before_save :create_remember_token

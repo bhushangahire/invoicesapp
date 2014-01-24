@@ -43,6 +43,10 @@ class InvoicesController < ApplicationController
     @invoice.invoice_items.build
 	@clients = @user.clients
 	@currencies = Currency.all
+	@clients_array = @clients.map { |client| [client.name, client.id] }
+	@currencies_array = @currencies.map { |currency| [currency.title, currency.id] }
+	@selected_client = params[:client_id]
+	
   end
 
   # GET /invoices/1/edit
@@ -50,6 +54,9 @@ class InvoicesController < ApplicationController
   	@currencies = Currency.all
   	@clients = @user.clients
   	@invoice_items = Invoice.find_by_slug(params[:id]).invoice_items
+  	@clients_array = @clients.map { |client| [client.name, client.id] }
+  	@currencies_array = @currencies.map { |currency| [currency.title, currency.id] }
+  	@selected_client = @invoice.client_id
   end
 
   # POST /invoices
@@ -59,10 +66,11 @@ class InvoicesController < ApplicationController
    @clients = Client.all
    @currencies = Currency.all
    @user = User.first
+   @clients_array = @clients.map { |client| [client.name, client.id] }
+   @currencies_array = @currencies.map { |currency| [currency.title, currency.id] }
 
     respond_to do |format|
       if @invoice.save
-      	InvoiceMailer.send_receipt(@user).deliver
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
         format.json { render action: 'show', status: :created, location: @invoice }
       else
