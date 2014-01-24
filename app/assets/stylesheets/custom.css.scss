@@ -39,12 +39,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	border: none;
 	margin: 0 auto;
 	a {
-		color: #000 !important;
+		color: #333 !important;
 	}	
 	.navbar-brand {
 		text-transform: uppercase;
 		font-weight: bold;
 		font-family: "Futura Std", "Avenir Next", sans-serif;
+		a {
+			color: $flatBlue;
+		}
 	}
 }
 
@@ -63,4 +66,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	max-width: 1150px;
 	margin: 20px auto;
 	text-align: center;	
+}
+
+.alert {
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.alert-success {
+	background: $flatBlue;	
+}
+
+.alert-error {
+	background: #e74c3c;
 }

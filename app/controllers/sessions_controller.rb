@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
 		user = User.find_by_email(params[:session][:email])
 		
 		if user && user.authenticate(params[:session][:password])
+			flash[:success] = "Welcome back!"
 			sign_in user
 			redirect_back_or invoices_path
 		else
@@ -18,6 +19,8 @@ class SessionsController < ApplicationController
 		sign_out
 		redirect_to root_path
 	end
+	
+	
 	
 	
 end

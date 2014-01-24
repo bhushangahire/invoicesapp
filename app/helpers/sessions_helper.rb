@@ -41,4 +41,16 @@ module SessionsHelper
 			redirect_to signin_path, notice: "Please sign in." 
 		end
 	end
+	
+	# method to check that user is checking their own clients' invoices
+	def correct_user?
+		current_user.id == @client.user_id
+	end
+	
+	# method to check that unauthorised user does not have access to invoice controls
+	def authorised?
+		current_user == @user
+	end
 end
+
+

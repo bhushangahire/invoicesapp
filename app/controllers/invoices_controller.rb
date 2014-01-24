@@ -6,16 +6,22 @@ class InvoicesController < ApplicationController
   # GET /invoices.json
   def index
   	 @clients = Client.all
-  	 if signed_in?
+  	 if signed_in? 
   	 	if params[:client_id].nil?
-  	 		 	 @invoices = @user.invoices
+ 			 # url /invoices
+ 		 	 @invoices = @user.invoices
   	 	else
-  	 		 @invoices = Client.find_by_id(params[:client_id]).invoices
-  	 		 @single_client = true
+  	 		 # url /clients/:id/invoices
   	 		 @client = Client.find_by_id(params[:client_id])
+	 		 @invoices = @client.invoices
+ 	 		 @single_client = true
+  			 if !correct_user?
+  			 	flash[:error] = "Not allowed!"
+  			 	redirect_to root_path
+  			 end
   	 	end
   	 else
-  	 	flash[:success] = "Not allowed"
+  	 	flash[:error] = "Not allowed"
   	 	redirect_to root_path
   	 end
   	
@@ -25,8 +31,8 @@ class InvoicesController < ApplicationController
   # GET /invoices/1
   # GET /invoices/1.json
   def show
+  	@user = User.find(@invoice.user_id)
 	@client = Client.find_by_id(@invoice.client_id)
-	@user = User.find(@invoice.user_id)
 	@currency = Currency.find_by_id(@invoice.currency_id)
   	
   end
@@ -89,6 +95,7 @@ class InvoicesController < ApplicationController
       format.json { head :no_content }
     end
   end
+ 
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -99,6 +106,8 @@ class InvoicesController < ApplicationController
     def set_user
     	@user = User.find_by_remember_token(cookies[:remember_token])
     end
+    
+    
     
 
 end

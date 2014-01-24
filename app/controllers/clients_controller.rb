@@ -20,7 +20,8 @@ class ClientsController < ApplicationController
 		@client = Client.new(params[:client])
 		@client.user_id = User.find_by_remember_token(cookies[:remember_token]).id
 		if @client.save
-			flash[:success] = "Welcome to new user"
+			InvoiceMailer.send_receipt(@client).deliver
+			flash[:success] = "Client created."
 			redirect_to @client
 		else
 			render 'new'
