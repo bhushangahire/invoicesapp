@@ -48,9 +48,9 @@ gem 'capistrano', group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# use attr accessible
-gem 'protected_attributes'
+
 gem 'bootstrap-sass'
+
 group :development do
 	gem 'rails_layout'
 	gem 'rspec-rails', '~> 3.0.0.beta'
@@ -67,3 +67,5 @@ gem 'jquery-turbolinks'
 
 # for generating receipt pdfs
 gem 'prawn_rails'
+
+gem 'devise'

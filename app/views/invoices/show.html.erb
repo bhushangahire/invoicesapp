@@ -2,7 +2,7 @@
 
 <div class="invoice-header">
 	<%=  image_tag "hc-promo.png", alt: "Hash Cookies Logo" %>
-	<p class="inv-company-title"><%= @user.user_company %> <span class="inv-date"><%= @invoice.invoice_type %> #<%= @invoice.id %></span></p>
+	<p class="inv-company-title"><%= @user.company %> <span class="inv-date"><%= @invoice.invoice_type %> #<%= @invoice.id %></span></p>
 	
 </div>
 
@@ -11,7 +11,8 @@
 <div class="inv-client-info">
 	<div class="inv-client">
 		<span class="inv-client-name"><%= @client.name %></span><br />
-		<span class="inv-client-address"><%= @client.address %></span>
+		<span class="inv-client-address"><%= @client.address %></span><br />
+		<%= link_to "View all invoices", client_invoices_path(@client) %>
 	</div>
 	<div class="inv-proj">
 		<span class="inv-project-title"><%= @invoice.project_title %></span><br />
@@ -71,13 +72,13 @@
 <div class="invoice-footer">
 	<div class="inv-user row col-lg-5 col-sm-12">
 		<div class="user-name "><%= @user.name %></div>
-		<div class="user-title"><%= @user.user_company %></div>
+		<div class="user-title"><%= @user.company %></div>
 	</div>
 	<div class="row col-lg-7 col-sm-12">
 		<ul class="inv-user-meta pull-right">
 			<li><%= @user.email %></li>
-			<li><%= number_to_phone(@user.user_phone, country_code: 91) %></li>
-			<li><%= @user.user_weburl %></li>
+			<li><%= number_to_phone(@user.phone, country_code: 91) %></li>
+			<li><%= @user.company_url %></li>
 		</ul>
 	</div>
 </div>
@@ -86,13 +87,9 @@
 	<div class="invoice-controls">
 		<%= render 'paid_form' %>
 	</div>
-<% end %>
-
-<% if authorised? %>
 	<div class="inv-nav row col-md-12">
-		
 			<%= link_to 'Edit Invoice', edit_invoice_path(@invoice) %> |
 			<%= link_to 'Back to Invoices', invoices_path %>
-
+		
 	</div>
 <% end %>

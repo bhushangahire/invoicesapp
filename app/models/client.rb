@@ -1,5 +1,4 @@
 class Client < ActiveRecord::Base
-	attr_accessible :name, :address, :user_id, :email
 	has_many :invoices
 	belongs_to :user
 	

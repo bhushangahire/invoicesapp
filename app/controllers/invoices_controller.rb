@@ -21,8 +21,13 @@ class InvoicesController < ApplicationController
   			 end
   	 	end
   	 else
-  	 	flash[:error] = "Not allowed"
-  	 	redirect_to root_path
+  	 	if params[:client_id].nil?
+	  	 	flash[:error] = "Not allowed"
+  		 	redirect_to root_path
+  		 else
+  		 	@client = Client.find_by_id(params[:client_id])
+  		 	@invoices = @client.invoices
+  		 end
   	 end
   	
 	 
@@ -34,7 +39,6 @@ class InvoicesController < ApplicationController
   	@user = User.find(@invoice.user_id)
 	@client = Client.find_by_id(@invoice.client_id)
 	@currency = Currency.find_by_id(@invoice.currency_id)
-  	
   end
 
   # GET /invoices/new
@@ -62,10 +66,9 @@ class InvoicesController < ApplicationController
   # POST /invoices
   # POST /invoices.json
   def create
-   @invoice = Invoice.create(params[:invoice])
+   @invoice = Invoice.create(invoice_params)
    @clients = Client.all
    @currencies = Currency.all
-   @user = User.first
    @clients_array = @clients.map { |client| [client.name, client.id] }
    @currencies_array = @currencies.map { |currency| [currency.title, currency.id] }
 
@@ -84,7 +87,7 @@ class InvoicesController < ApplicationController
   # PATCH/PUT /invoices/1.json
   def update
     respond_to do |format|
-      if @invoice.update(params[:invoice])
+      if @invoice.update(invoice_params)
         format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
         format.json { head :no_content }
       else
@@ -119,10 +122,15 @@ class InvoicesController < ApplicationController
     end
     
     def set_user
-    	@user = User.find_by_remember_token(cookies[:remember_token])
+    	@user = current_user
     end
     
-    
+    def invoice_params
+    	params.require(:invoice).permit(:project_title, 
+    									:client_id, :notes, :slug, :user_id, :invoice_type, 
+    									:currency_id, :paid, :discount, 
+    									invoice_items_attributes: [:id, :invoice_id, :_destroy, :item_title, :item_desc, :item_amount] )
+    end
     
 
 end

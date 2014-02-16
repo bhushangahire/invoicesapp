@@ -1,4 +1,5 @@
 InvoicesApp::Application.routes.draw do
+  devise_for :users
   resources :users
   resources :invoices do
   	member do
@@ -9,14 +10,13 @@ InvoicesApp::Application.routes.draw do
   	resources :invoices, only: [:index]
   end
   
-  resources :sessions, only: [:new, :create, :destroy]
   
   get '/about', to: 'static_pages#about'
   root to: 'static_pages#home'
-  
-  get '/signup',  to: 'users#new'
-  get '/login',   to: 'sessions#new'
-  delete '/logout',  to: 'sessions#destroy'
+#  
+#  get '/signup',  to: 'users#new'
+#  get '/login',   to: 'sessions#new'
+#  delete '/logout',  to: 'sessions#destroy'
 	
 
   # The priority is based upon order of creation: first created -> highest priority.

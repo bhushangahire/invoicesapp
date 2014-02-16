@@ -1,34 +1,20 @@
 class UsersController < ApplicationController
 	def index
-		@user ||= User.find_by_remember_token(cookies[:remember_token])
-		render 'show'
+		@users = User.all
 	end
 	
 	def show
 		@user = User.find(params[:id])
-	end
-	
-	def new
-		@user = User.new
-	end
-	
-	def create
-		@user = User.new(user_params)
-		if @user.save
-			flash[:success] = "Welcome to new user"
-			sign_in @user
-			redirect_to @user
+		if !authorised?
+			flash[:error] = "Not allowed!"
+			redirect_to root_path
 		else
-			render 'new'
+			render 'show'
 		end
 	end
 	
 	def edit
-		@user = User.find(params[:id])
+
 	end
-	
-		def user_params
-			params.require(:user).permit(:name, :email, :password, :password_confirmation)
-		end
-	
+
 end

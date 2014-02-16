@@ -1,7 +1,4 @@
 class Invoice < ActiveRecord::Base
-	attr_accessible :client_id, :project_title, :notes, :invoice_items_attributes, 
-					:slug, :user_id, :currency_id, :invoice_type, :paid,
-					:discount
 	has_many :invoice_items, dependent: :destroy
 	has_one :currency
 	accepts_nested_attributes_for :invoice_items, :reject_if => lambda { |a| a[:item_title].blank? }, 

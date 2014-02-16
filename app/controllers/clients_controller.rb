@@ -2,13 +2,11 @@ class ClientsController < ApplicationController
 	 before_action :set_client, only: [:destroy]
 
 	def index
-		@user ||= User.find_by_remember_token(cookies[:remember_token])
-		@clients = @user.clients
+		@clients = current_user.clients
 	end
 	
 	def show
-		@user ||= User.find_by_remember_token(cookies[:remember_token])
-		@clients = @user.clients
+		@clients = current_user.clients
 		render 'index'
 	end
 	
@@ -17,8 +15,8 @@ class ClientsController < ApplicationController
 	end
 	
 	def create
-		@client = Client.new(params[:client])
-		@client.user_id = User.find_by_remember_token(cookies[:remember_token]).id
+		@client = Client.new(client_params)
+		@client.user_id = current_user.id
 		if @client.save
 			flash[:success] = "Client created."
 			redirect_to @client
@@ -41,4 +39,7 @@ class ClientsController < ApplicationController
 	    @client = Client.find(params[:id])
 	  end
 	
+	def client_params
+		params.require(:client).permit(:name, :address, :user_id, :email)
+	end
 end

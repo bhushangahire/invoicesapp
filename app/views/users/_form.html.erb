@@ -1,6 +1,6 @@
-<%= form_for(@user) do |f| %>
+<%= form_for(current_user) do |f| %>
 	
-	<% if @user.errors.any? %>
+	<% if current_user.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this invoice from being saved:</h2>
 	
@@ -36,17 +36,17 @@
 	
 	<div class="row">
 		<div class="form-group col-md-3">
-			<%= f.text_field :user_title, placeholder: "Designation", class: "form-control" %>
+			<%= f.text_field :designation, placeholder: "Designation", class: "form-control" %>
 		</div>
 		<div class="form-group col-md-3">
-			<%= f.text_field :user_phone, placeholder: "Phone", class: "form-control" %>
+			<%= f.text_field :phone, placeholder: "Phone", class: "form-control" %>
 		</div>
 		<div class="form-group col-md-3">
-			<%= f.text_field :user_tagline, placeholder: "Company Tagline", class: "form-control" %>
+			<%= f.text_field :company, placeholder: "Company Tagline", class: "form-control" %>
 		</div>
 		
 		<div class="form-group col-md-3">
-			<%= f.text_field :user_company, placeholder: "Company Name", class: "form-control" %>
+			<%= f.text_field :company_url, placeholder: "Company Name", class: "form-control" %>
 		</div>
 	</div>
 	
