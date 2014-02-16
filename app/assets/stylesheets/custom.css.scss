@@ -15,7 +15,7 @@ header, .debug_dump {
 
 body {
 	font-family:  $primary;
-	background: $lightBlue url(bg-stripes.png) fixed;
+	background: $lightBlue image-url('bg-stripes.png') fixed;
 	color: $primary-dark;
 }
 
