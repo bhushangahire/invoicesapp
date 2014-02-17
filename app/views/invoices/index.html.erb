@@ -13,9 +13,9 @@
 <% if signed_in? %>
 
 	<% if @single_client.nil? %>
-		<%= link_to 'New Invoice', new_invoice_path, class: "btn btn-primary" %>
+		<%= link_to 'New Invoice', new_invoice_path, class: "btn new-invoice-btn" %>
 	<% else %>
-		<%= link_to 'New Invoice', new_invoice_path(client_id: @client.id), class: "btn btn-primary" %>
+		<%= link_to 'New Invoice', new_invoice_path(client_id: @client.id), class: "btn new-invoice-btn" %>
 	<% end %>
 
 <% end %>

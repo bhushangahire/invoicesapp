@@ -9,21 +9,21 @@
   	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
   <% end %>
 </head>
-<body>
+<body class="homepage">
 	
-	<%= render 'layouts/header' %>
+	<ul class="home-nav">
+		<li><%= link_to "Log in", new_user_session_path %></li>
+		<li><%= link_to "About", about_path %></li>
+	</ul>
+
 	
 	<div class="container main"> 
-			<% flash.each do |key, value| %>
-				<%= content_tag(:div, value, class: "alert alert-#{key}") %>
-			<% end %>
 			
 			<%= yield %>
 	</div>
 	
-	<footer id="footer">
-		<%#= debug(params) if Rails.env.development? %>
-	</footer>
+	<div id="promo-footer"><a href="http://hashcooki.es/">by Hash Cookies</a></div>
 	
+
 </body>
 </html>

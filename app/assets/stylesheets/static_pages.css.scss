@@ -1,3 +1,63 @@
+@import "global.css.scss";
+
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+body.homepage {
+	background: white;
+	.container {
+		box-shadow: none;
+		padding-top: 200px;
+	}
+}
+
+#promo-footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 35%;
+	background-color: $homered;
+	color: white;
+	a {
+		display: block;
+		text-indent: -9999px;
+		background: image-url('hashvoices-home-footer.png') no-repeat;
+		width: 524px;
+		height: 75px;
+		margin: 0 auto;
+	}
+}
+
+h1#home-logo {
+	background: image-url('hash-invoices2.png') no-repeat;
+	width: 993px;
+	height: 130px;
+	text-indent: -9999px;
+	margin: 0 auto;
+	text-align: center;
+	
+}
+
+.home-nav {
+	position: absolute;
+	top: 20px;
+	right: 15px;
+	li {
+		float: left;
+		list-style: none;
+		text-transform: uppercase;
+		margin-right: 25px;
+		font-size: 18px;
+		a {
+			color: $homered;
+		}
+	}
+}
+
+.red {
+	color: $homered;
+	text-transform: uppercase;
+}

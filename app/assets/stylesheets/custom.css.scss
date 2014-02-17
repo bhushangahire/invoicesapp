@@ -15,7 +15,7 @@ header, .debug_dump {
 
 body {
 	font-family:  $primary;
-	background: $lightBlue image-url('bg-stripes.png') fixed;
+	background: white;
 	color: $primary-dark;
 }
 
@@ -25,19 +25,20 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .main {
 	background: white;
-	padding: 30px 3.5%;
-	box-shadow: 1px 2px 5px #c7ced3;
-	-moz-box-shadow: 1px 2px 5px #c7ced3;
+	margin-top: 50px;
 }
 
 
 .navbar {
 	@include td(400ms);
-	background: transparent !important;
+	background: white !important;
 	box-shadow: none;
-	max-width: 1180px;
+	width: 100%;
 	border: none;
 	margin: 0 auto;
+	border-bottom: 1px solid #ddd;
+	border-radius: 0;
+	
 	a {
 		color: #333 !important;
 	}	
@@ -45,10 +46,27 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		text-transform: uppercase;
 		font-weight: bold;
 		font-family: "Futura Std", "Avenir Next", sans-serif;
-		a {
-			color: $flatBlue;
-		}
+		color: $homered !important;	
 	}
+	
+	.navbar-nav {
+		li {
+			font-size: 20px;
+			font-weight: 100;
+			a {
+				padding: 15px 25px;
+			}
+		}
+		.active > a {
+			background: #ec604e;
+			color: white !important;
+			text-shadow: none;
+			box-shadow: none;
+			&:hover {
+				background: darken($homered, 10%);
+			}
+		}	
+	} 
 }
 
 
@@ -76,3 +94,82 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .alert-notice {
 	background: #16a085;
 }
+
+.invoice-list {
+	thead {
+		tr {
+			border-bottom: 1px solid #eee;
+			th {
+				font-size: 14px;
+				color: $primary-dark;
+				text-transform: uppercase;
+			}
+		}
+	}
+	tbody {
+		border: none !important;
+		tr {
+			border: none;
+			border-bottom: 1px solid #eee;
+			td {
+				padding: 20px 8px;
+				border: none;
+				font-size: 18px;
+				&:first-child {
+					font-size: 22px;
+					font-weight: 100;
+					a {
+						color: $flatBlue;
+					}
+				}
+				a {
+					color: inherit;
+				}
+			}
+		} 	
+	}
+	
+} 
+
+.new-invoice-btn {
+	font-size: 32px;
+}
+
+
+@media (min-width: 1000px) {
+	.navbar-header {
+		width: 100%;
+		overflow: auto;
+		.navbar-brand {
+			float: none;
+			padding-left: 40px;
+			display: block;
+			font-size: 24px;
+		}
+	}
+	.navbar {
+		float: left;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		padding-top: 20px;
+		
+		width: 210px;
+		overflow: auto;
+		border-right: 1px solid #eee;
+		.navbar-nav { 
+			float: none !important;
+			li {
+				float: none;
+				text-align: left;
+				font-size: 16px;
+			}
+		} 
+		
+	}
+	
+	.main {
+		margin-left: 250px;
+	}
+	
+	}
